@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static',
+filename='buttons_textArea.css') }}">
+</head>
+<body>
+<!--Button to show patients -->
+<form action="/table">
+    <input type=submit value='show patients' name='action'>
+</form>
+<!--Button to add patient -->
+<button class="button_open" onclick="openForm(this)" id="1">add patient</button>
+<div class="form-popup" id="add">
+    <form method="POST" action="/link">  <!--send request to /link -->
+        <div>
+            <label for="Surname">Last Name: </label>
+            <input type="text" id="Surname" name="Surname" placeholder="Last Name.." required>
+        </div>
+        <div>
+            <label for="Name">First Name: </label>
+            <input type="text" id="Name" name="Name" placeholder="First Name.." required>
+        </div>
+        <div>
+            <label for="Age">Age: </label>
+            <input type="text" id="Age" name="Age" placeholder="Age.." required>
+        </div>
+        <div>
+            <label for="Telephone">Telephone: </label>
+            <input type="text" id="Telephone" name="Telephone" placeholder="Telephone.." required>
+        </div>
+        <div>
+            <label for="Address">Address: </label>
+            <input type="text" id="Address" name="Address" placeholder="Address.." required>
+        </div>
+        <div>
+            <label for="Cause of Examination">Cause of Examination: </label>
+            <input type="text" id="Cause of Examination" name="Cause" placeholder="Cause of Examination.." required>
+        </div>
+        <div>
+            <label for="Date">Date: </label>
+            <input type="text" id="Date" name="Date" placeholder="Date.." required>
+        </div>
+        <div>
+            <label for="Summary">Summary: </label>
+            <textarea id="Summary" name="Summary" placeholder="Summary.." style="height:200px" required></textarea>
+        </div>
+        <div>
+            <input type="submit" value="add patient" name='action'>
+        </div>
+    </form>
+</div>
+
+<!--Button to delete patient -->
+<button class="button_open" onclick="openForm(this)" id="2">delete patient</button>
+<div class="form-popup" id="delete">
+    <form method="POST" action="/delete">
+        <div>
+            <label for="Surname">Last Name: </label>
+            <input type="text" id="Surname_delete" name="Surname" placeholder="Last Name.." required>
+        </div>
+
+        <div>
+            <input type="submit" value="delete patient" name='action'>
+        </div>
+    </form>
+</div>
+<!--Button to search patient -->
+<button class="button_open" onclick="openForm(this)" id="3">search patient</button>
+<div class="form-popup" id="search">
+    <form method="POST" action="/search">
+        <div>
+            <label for="Surname">Last Name: </label>
+            <input type="text" id="Surname_search" name="Surname" placeholder="Last Name.." required>
+        </div>
+
+        <div>
+            <input type="submit" value="search patient" name='action'>
+        </div>
+    </form>
+</div>
+<script>
+//execute func when specific button is pressed
+
+function openForm(button) {
+var y=button.id;
+if (y==="3"){
+  x=document.getElementById("search")
+  func(x)
+} else if (y=="2"){
+  x=document.getElementById("delete")
+  func(x)
+} else if (y=="1"){
+  x=document.getElementById("add")
+  func(x)
+}
+}
+//show and hide
+
+function func(x) {
+if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+</script>
+
+<button class="button" style="vertical-align:middle" type="submit" onclick="alert()"><span>Logout</span></button>
+
+<script>
+//warn for logout
+
+function alert() {
+  var txt;
+  var r = confirm("Are you sure?");
+  if (r == true) {
+    window.location.href='{{ url_for( 'logout') }}';
+  }
+}
+</script>
+</body>
+</html>
