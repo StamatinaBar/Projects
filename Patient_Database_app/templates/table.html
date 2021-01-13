@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>Patient Information</title>
+    <link rel="stylesheet" href="{{ url_for('static',
+filename='scrolling_table.css') }}">
+    <!-- <meta http-equiv="refresh" content="5" > -->
+</head>
+<body>
+<div class="scrollingtable">
+    <div>
+        <div>
+            <table>
+                <caption>Patient Data</caption>
+                <thead>
+                <tr>
+                    <th>
+                        <div label="Last Name"></div>
+                    </th>
+                    <th>
+                        <div label="First Name"></div>
+                    </th>
+                    <th>
+                        <div label="Age"></div>
+                    </th>
+                    <th>
+                        <div label="Telephone"></div>
+                    </th>
+                    <th>
+                        <div label="Address"></div>
+                    </th>
+                    <th>
+                        <div label="Cause of Examination"></div>
+                    </th>
+                    <th>
+                        <div label="Date"></div>
+                    </th>
+
+                    <th class="scrollbarhead"></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for row in data %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[5]}}</td>
+                    <td>{{row[6]}}</td>
+                    {% endfor %}
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<a href="{{ url_for('home') }}">Go to home page</a>
+
+</body>
+</html>
