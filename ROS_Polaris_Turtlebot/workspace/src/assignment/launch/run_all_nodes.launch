@@ -1,0 +1,18 @@
+<launch>
+   <remap from="turtle1/cmd_vel" to="polaris/cmd_vel" />
+   <remap from="turtle1/pose" to="polaris/pose" />
+   <remap from="turtle1/color_sensor" to="polaris/color_sensor" />
+
+   <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
+   
+   <node name="polaris_tf_broadcaster" pkg="assignment" type="tf_broadcaster.py" respawn="false" output="screen" >
+     <param name="turtle" type="string" value="polaris" />
+   </node>
+
+   <node name="turtlebot_tf_broadcaster" pkg="assignment" type="tf_broadcaster.py" respawn="false" output="screen" >
+      <param name="turtle" type="string" value="turtlebot" /> 
+   </node>
+   
+   <node pkg="assignment" type="tf_listener.py" name="listener"/>
+
+</launch>
